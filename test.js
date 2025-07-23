@@ -102,4 +102,3 @@ itineraires.forEach((itineraire) => {
 //   prix.appendChild(price);
 // })
 
-const hello= document.getElementById("hello")
