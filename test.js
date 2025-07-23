@@ -16,34 +16,34 @@ const options = {
 	// console.log("test Nasra" , result.sectorSegments)
 	// console.log("test Vincent" , result.sectorSegments.segment)
 // Imaginons que ta réponse JSON est stockée dans une variable appelée `result`
-const iti = result.itineraries;
+// const iti = result.itineraries;
 
-iti.forEach((itinerary) => {
-  console.log("➡️ Itinéraire :");
+// iti.forEach((itinerary) => {
+//   console.log("➡️ Itinéraire :");
   
-  const outboundSegments = itinerary.outbound.sectorSegments;
-  const inboundSegments = itinerary.inbound.sectorSegments ;
+//   const outboundSegments = itinerary.outbound.sectorSegments;
+//   const inboundSegments = itinerary.inbound.sectorSegments ;
 
-  outboundSegments.forEach((segmentWrapper, i) => {
-    const segment = segmentWrapper.segment;
-    const from = segment.source.station.name;
-    const to = segment.destination.station.name;
-    console.log(`  🛫 Segment aller ${i + 1} : ${from} → ${to}`);
-  });
+//   outboundSegments.forEach((segmentWrapper, i) => {
+//     const segment = segmentWrapper.segment;
+//     const from = segment.source.station.name;
+//     const to = segment.destination.station.name;
+//     console.log(`  🛫 Segment aller ${i + 1} : ${from} → ${to}`);
+//   });
 
-  inboundSegments.forEach((segmentWrapper, i) => {   // que represent le I a demande a GPT
-    const segment = segmentWrapper.segment;
-    const from = segment.source.station.name;
-    const to = segment.destination.station.name;
-    console.log(`  🛬 Segment retour ${i + 1} : ${from} → ${to}`);
-});
+//   inboundSegments.forEach((segmentWrapper, i) => {   // que represent le I a demande a GPT
+//     const segment = segmentWrapper.segment;
+//     const from = segment.source.station.name;
+//     const to = segment.destination.station.name;
+//     console.log(`  🛬 Segment retour ${i + 1} : ${from} → ${to}`);
+// });
 
-console.log("Prix :", itinerary.price.amount + "€");
-console.log("-------------");
-console.log("MAXITEST" ,iti)
-});
-}
-test()
+// console.log("Prix :", itinerary.price.amount + "€");
+// console.log("-------------");
+// console.log("MAXITEST" ,iti)
+// });
+// }
+// test()
 
 
 
@@ -82,4 +82,24 @@ itineraires.forEach((itineraire) => {
 
   console.log(`💰 Prix : ${prix}€`);
   console.log("------------------------");
-});
+
+
+})
+//   let boutonTest= document.getElementById("test")
+// boutonTest.addEventListener("click", () =>{
+
+//   const price= document.createElement('p');
+//   price.innerHTML = `price : ${prix} euros $`
+//   prix.appendChild(price);
+// });
+}
+
+// let boutonTest= document.getElementById("test")
+// boutonTest.addEventListener("click", () =>{
+
+//   const price= document.createElement('p');
+//   price.innerHTML = `price : ${prix} euros $`
+//   prix.appendChild(price);
+// })
+
+const hello= document.getElementById("hello")
