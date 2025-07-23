@@ -7,7 +7,7 @@ const url = 'https://kiwi-com-cheap-flights.p.rapidapi.com/round-trip?source=Cou
 const options = {
 	method: 'GET',
 	headers: {
-		'x-rapidapi-key': '4395428547msh5fa9f72b2b488b7p1d3f25jsn79eebc5765a5',
+		'x-rapidapi-key': '7bec869ebcmsh6281117749bd219p103834jsncdd4bd9be293',
 		'x-rapidapi-host': 'kiwi-com-cheap-flights.p.rapidapi.com'
 	}
 }
@@ -23,6 +23,7 @@ const iti = result.itineraries;
 
 iti.forEach((itinerary) => {
   console.log("➡️ Itinéraire :");
+  // Après la pause dej lier itinéraire x au prix et mettre les infos ainsi que les liens.
   
   const outboundSegments = itinerary.outbound.sectorSegments;
   const inboundSegments = itinerary.inbound.sectorSegments ;
@@ -48,7 +49,7 @@ console.log("MAXITEST" ,iti)
 
 })
 }
-test()
+
 function affichagePrix(prix) {
   let prices = document.createElement("p")
   prices.innerHTML = prix

@@ -6,3 +6,5 @@ affichage des prix sur le calendrier,((((image changeante selon la destination))
 Mardi 22 juil 2025 : aujourdhui à 14h43 nous avons enfin trouvé les  "outbound = aller, inbound = retour " ce fût très cardio.
  faut coller "bookinURL" à "name" pour accéder au site.
  selon l'aller ou le retour il faudra prendre tout le contenu de segment.source et segment.destination
+
+ Mercredi 23 juil 2025 : Aujourd'hui 15h13 nous avons enfin réussi a afficher tous les prix maintenant nous devons bouclés l'itineraries au prix,source
