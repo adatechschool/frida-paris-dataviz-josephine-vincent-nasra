@@ -44,3 +44,42 @@ console.log("MAXITEST" ,iti)
 });
 }
 test()
+
+
+
+
+// On récupère tous les itinéraires
+const itineraires = result.itineraries;
+
+// On parcourt chaque itinéraire un par un
+itineraires.forEach((itineraire) => {
+  console.log("✈️ Nouvel itinéraire :");
+   // --- VOLS ALLER ---
+  console.log("🛫 Vols aller :");
+
+  const volsAller = itineraire.outbound.sectorSegments;
+  
+  // On regarde chaque vol aller
+  volsAller.forEach((vol) => {
+    const depart = vol.segment.source.station.name;
+    const arrivee = vol.segment.destination.station.name;
+    console.log(`   De ${depart} vers ${arrivee}`);
+  });
+  // --- VOLS RETOUR ---
+  console.log("🛬 Vols retour :");
+  
+  const volsRetour = itineraire.inbound.sectorSegments;
+  
+  // On regarde chaque vol retour
+  volsRetour.forEach((vol) => {
+    const depart = vol.segment.source.station.name;
+    const arrivee = vol.segment.destination.station.name;
+    console.log(`   De ${depart} vers ${arrivee}`);
+  });
+
+  // On affiche le prix
+  const prix = itineraire.price.amount;
+
+  console.log(`💰 Prix : ${prix}€`);
+  console.log("------------------------");
+});
