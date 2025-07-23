@@ -3,3 +3,6 @@
 Lundi 21 juil 2025 : Nous partons sur une API qui concerne l'univers du voyage. L'API va nous permettre de voir les destinations les plus fréquentées ainsi que les tarifs les plus avantageux sur un large choix de destinations. On va également afficher la date,la classe eco , business et première classe, l'heure de départ et d'arrivée du vol ainsi que l'aeroport de départ , d'arrivée et la durée de vol. 
 affichage des prix sur le calendrier,((((image changeante selon la destination))))
 
+Mardi 22 juil 2025 : aujourdhui à 14h43 nous avons enfin trouvé les  "outbound = aller, inbound = retour " ce fût très cardio.
+ faut coller "bookinURL" à "name" pour accéder au site.
+ selon l'aller ou le retour il faudra prendre tout le contenu de segment.source et segment.destination
