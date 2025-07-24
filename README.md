@@ -19,3 +19,7 @@ code aeroport retour = inbound.sectorSegments.segment.source.station.code // con
 
 source = point de départ 
 destination = arrivée
+
+Jeudi 24 juill 2025: A 10h40, nous pensons mettre notre bouton "ceci est un bouton" sur le côté et intégrer une loupe: quand l'utilisateur cliquera sur ce bouton, il aura le choix sur toutes les destinations possibles entre deux pays. 
+A 12h21, nous avons afficher les différentes options de billets entre un point A et un point B avec les différentes valeurs ( prix, heure..). 
+Dans l'apres midi, il faudra indiquer les dates.A chaque chargement, le billet d'avion change
