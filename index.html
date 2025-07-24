@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="test.js"></script>
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script defer src="test.js"></script>
+  <title>Document</title>
 </head>
+
 <body>
-    <button onclick="test()" id = "testeuh">ceci est un bouton</button>
-    <div id = "cout"></div>
-    
+  <button onclick="test()" id="testeuh">Ceci est un bouton</button>
+
+  <!-- Aller -->
+  <label for="outbound">Billet aller :</label>
+  <select id="outbound">
+    <option value="FR">France</option>
+    <option value="IT">Italie</option>
+    <option value="KM">Comores</option>
+    <option value="MY">Malaisie</option>
+    <option value="ID">Indonésie</option>
+    <option value="BS">Bahamas</option>
+  </select>
+
+  <!-- Retour -->
+  <label for="inbound">Billet retour :</label>
+  <select id="inbound">
+    <option value="FR">France</option>
+    <option value="IT">Italie</option>
+    <option value="KM">Comores</option>
+    <option value="MY">Malaisie</option>
+    <option value="ID">Indonésie</option>
+    <option value="BS">Bahamas</option>
+  </select>
+
+  <div id="cout"></div>
 </body>
+
 </html>
