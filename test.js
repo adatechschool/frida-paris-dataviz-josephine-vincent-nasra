@@ -28,7 +28,7 @@ printTickets.forEach((itinerary) => {
   const container = document.createElement("div")
 
 
-  // Arrival
+  // Departure
 
   outboundSegments.forEach((segmentWrapper, i) => {
     const segment = segmentWrapper.segment;
@@ -54,7 +54,7 @@ printTickets.forEach((itinerary) => {
 
   });
 
-  // Departure
+  // Arrival
 
   inboundSegments.forEach((segmentWrapper, i) => { 
     const segment = segmentWrapper.segment;
