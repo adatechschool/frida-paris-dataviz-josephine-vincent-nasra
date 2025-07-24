@@ -7,4 +7,15 @@ Mardi 22 juil 2025 : aujourdhui à 14h43 nous avons enfin trouvé les  "outbound
  faut coller "bookinURL" à "name" pour accéder au site.
  selon l'aller ou le retour il faudra prendre tout le contenu de segment.source et segment.destination
 
- Mercredi 23 juil 2025 : Aujourd'hui 15h13 nous avons enfin réussi a afficher tous les prix maintenant nous devons bouclés l'itineraries au prix,source
+ Mercredi 23 juil 2025 : Aujourd'hui 15h13 nous avons enfin réussi a afficher tous les prix maintenant nous devons bouclés l'itineraries au prix,l'aéroport de départ et  d'arrivée,horaire, nom de ville et d'aeroport.
+
+date = outbound.sectorSegments.segment.source/destination.localtime   // const departureDate
+date = inbound.sectorSegments.segment.source/destination.localtime    // const arrivalDate
+aeroport d'arrivée = destination.station.name // const arrivalAirport
+aeroport de départ = source.station.name //const departureAirport
+temps de vol = printTickets.outbound.duration // const flightTime
+code aeroport arrivée = outbound.sectorSegments.segment.source.station.code // const departureCode
+code aeroport retour = inbound.sectorSegments.segment.source.station.code // const arrivalCode
+
+source = point de départ 
+destination = arrivée

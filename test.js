@@ -19,9 +19,10 @@ const options = {
 	// console.log("test Nasra" , result.sectorSegments)
 	// console.log("test Vincent" , result.sectorSegments.segment)
 // Imaginons que ta réponse JSON est stockée dans une variable appelée `result`
+const printTickets = result.itineraries;
 // const iti = result.itineraries;
 
-iti.forEach((itinerary) => {
+printTickets.forEach((itinerary) => {
   console.log("➡️ Itinéraire :");
   
   const outboundSegments = itinerary.outbound.sectorSegments;
@@ -40,11 +41,12 @@ iti.forEach((itinerary) => {
     const to = segment.destination.station.name;
     console.log(`  🛬 Segment retour ${i + 1} : ${from} → ${to}`);
 });
+
 let prix = itinerary.price.amount
 affichagePrix(prix)
 console.log("Prix :", prix + "€");
 console.log("-------------");
-console.log("MAXITEST" ,iti)
+console.log("MAXITEST" ,printTickets)
 
 })
 }
