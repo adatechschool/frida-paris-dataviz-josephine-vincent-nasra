@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="test.js"></script>
     <title>Document</title>
 </head>
+
 <body>
-    <button onclick="test()" id = "testeuh">ceci est un bouton</button>
+    <button onclick="test()" id="testeuh">ceci est un bouton</button>
+    <!-- aller -->
+    <label for="country-select">Billet aller</label>
+    <select id="outbound">
+        <option value="FR">France</option>
+        <option value="IT">Italie</option>
+        <option value="KM">Comores</option>
+        <option value="MY">Malaisie</option>
+        <option value="ID">Indonesie</option>
+        <option value="BS">Bahamas</option>
+    </select>
 
-<label for="pet-select">Choose a pet:</label>
+    <!-- retour -->
+    <label for="country-select">Billet retour:</label>
+    <select id="inbound">
+        <option value="FR">France</option>
+        <option value="IT">Italie</option>
+        <option value="KM">Comores</option>
+        <option value="MY">Malaisie</option>
+        <option value="ID">Indonesie</option>
+        <option value="BS">Bahamas</option>
+    </select>
+    </input>
+    <div id="cout"></div>
 
-<select name="pets" id="pet-select">
-  <option value="">--Please choose an option--</option>
-  <option value="France">France</option>
-  <option value="Italie">Italie</option>
-  <option value="Comores">Comores</option>
-  <option value="Malaisie">Malaisie</option>
-  <option value="Indonesie">Indonesie</option>
-  <option value="Bahamas">Bahamas</option>
-</select>
-</input>
-    <div id = "cout"></div>
-    
 </body>
+
 </html>
