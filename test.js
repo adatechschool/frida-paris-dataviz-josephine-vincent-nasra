@@ -7,7 +7,7 @@ const url = 'https://kiwi-com-cheap-flights.p.rapidapi.com/round-trip?source=Cou
 const options = {
 	method: 'GET',
 	headers: {
-		'x-rapidapi-key': '7bec869ebcmsh6281117749bd219p103834jsncdd4bd9be293',
+		'x-rapidapi-key': '7bec869ebcmsh6281117749bd219p103834jsncdd4bd9be29',
 		'x-rapidapi-host': 'kiwi-com-cheap-flights.p.rapidapi.com'
 	}
 }
