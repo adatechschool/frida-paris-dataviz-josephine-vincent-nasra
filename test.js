@@ -2,10 +2,28 @@ const cout = document.getElementById("cout")
 const testeuh = document.getElementById("testeuh")
 const selectOutbound = document.getElementById("outbound")
 const selectInbound = document.getElementById("inbound")
+const departureOutbound = document.getElementById("outboundDeparture")
+const arrivalOutbound = document.getElementById("outboundArrival")
+const departureInbound = document.getElementById("inboundDeparture")
+const arrivalInbound = document.getElementById("inboundArrival")
 
 
-// selectInbound.addEventListener("change")
+departureOutbound.addEventListener("change", () =>{ 
+})
+
+arrivalInbound.addEventListener("change", () =>{ 
+})
+
+departureInbound.addEventListener("change", () =>{ 
+
+})
+
+arrivalInbound.addEventListener("change", () =>{ 
+
+	console.log("test", arrivalInbound.value)
+})
 // selectOutbound.addEventListener("change")
+
 
 async function test() {
   cout.innerHTML = ""
@@ -16,7 +34,7 @@ async function test() {
   const options = {
     method: 'GET',
     headers: {
-      'x-rapidapi-key': '7bec869ebcmsh6281117749bd219p103834jsncdd4bd9be29',
+      'x-rapidapi-key': '7bec869ebcmsh6281117749bd219p103834jsncdd4bd9be293',
       'x-rapidapi-host': 'kiwi-com-cheap-flights.p.rapidapi.com'
     }
   }
