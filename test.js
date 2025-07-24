@@ -15,83 +15,92 @@ const options = {
 	const response = await fetch(url, options);
 	const result = await response.json();
 	console.log("Itinéraires trouvés :", result.itineraries);
-	// console.log("test Josephine" , result.source.name)
-	// console.log("test Nasra" , result.sectorSegments)
-	// console.log("test Vincent" , result.sectorSegments.segment)
-// Imaginons que ta réponse JSON est stockée dans une variable appelée `result`
-const printTickets = result.itineraries;
+
+ const printTickets = result.itineraries;
 
 printTickets.forEach((itinerary) => {
   console.log("➡️ Itinéraire :");
-  // Après la pause dej lier itinéraire x au prix et mettre les infos ainsi que les liens.
-  
   const outboundSegments = itinerary.outbound.sectorSegments;
   const inboundSegments = itinerary.inbound.sectorSegments ;
+  const flightTime = itinerary.outbound.duration;
+  const price = itinerary.price.amount
+
+  const container = document.createElement("div")
+
+
+  // Arrival
 
   outboundSegments.forEach((segmentWrapper, i) => {
     const segment = segmentWrapper.segment;
+
     const from = segment.source.station.name;
     const to = segment.destination.station.name;
-    console.log(`  🛫 Segment aller ${i + 1} : ${from} → ${to}`);
+    const departureDate = segment.source.localTime
+    const arrivalDate = segment.destination.localTime
+    const departureCode = segment.source.station.code
+    const arrivalCode = segment.destination.station.code
+
+    const title = document.createElement("p");
+    title.textContent = `  🛫 Segment aller ${i + 1} : ${from} (${departureCode}) → ${to} (${arrivalCode})`;
+    container.appendChild(title);
+
+    const dep = document.createElement("p");
+    dep.textContent = `Départ : ${departureDate}`;
+    container.appendChild(dep);
+
+    const arr = document.createElement("p")
+    arr.textContent = `Arrivée : ${arrivalDate}`;
+    container.appendChild(arr);
+
   });
 
-  inboundSegments.forEach((segmentWrapper, i) => {   // que represent le I a demande a GPT
+  // Departure
+
+  inboundSegments.forEach((segmentWrapper, i) => { 
     const segment = segmentWrapper.segment;
+
+
     const from = segment.source.station.name;
     const to = segment.destination.station.name;
-    console.log(`  🛬 Segment retour ${i + 1} : ${from} → ${to}`);
+    const departureDate = segment.source.localTime
+    const arrivalDate = segment.destination.localTime
+    const departureCode = segment.source.station.code
+    const arrivalCode = segment.destination.station.code
+
+    const title = document.createElement("p");
+    title.textContent = `  🛬 Segment retour ${i + 1} : ${from} (${departureCode}) → ${to} (${arrivalCode})`;
+    container.appendChild(title)
+
+    const dep = document.createElement("p");
+    dep.textContent = `Départ : ${departureDate}`;
+    container.appendChild(dep);
+
+    const arr = document.createElement("p")
+    arr.textContent = `Arrivée : ${arrivalDate}`;
+    container.appendChild(arr);
+
 });
 
-let prix = itinerary.price.amount
-affichagePrix(prix)
-console.log("Prix :", prix + "€");
-console.log("-------------");
-console.log("MAXITEST" ,printTickets)
+// Flight Time
+
+const duration = document.createElement("p")
+duration.textContent = `Durée de vol aller : ${flightTime} minutes`;
+container.appendChild(duration);
+
+// Price
+
+const priceTag = document.createElement("p")
+priceTag.textContent = `Prix ${price} €`
+container.appendChild(priceTag)
+
+// Ligne de séparation
+
+  const hr = document.createElement("hr");
+  container.appendChild(hr)
+
+  cout.appendChild(container);
 
 })
 }
 
-function affichagePrix(prix) {
-  let prices = document.createElement("p")
-  prices.innerHTML = prix
-  cout.appendChild(prices)
-} 
 
-
-
-
-// // On récupère tous les itinéraires
-// const itineraires = result.itineraries;
-
-// // On parcourt chaque itinéraire un par un
-// itineraires.forEach((itineraire) => {
-//   console.log("✈️ Nouvel itinéraire :");
-//    // --- VOLS ALLER ---
-//   console.log("🛫 Vols aller :");
-
-//   const volsAller = itineraire.outbound.sectorSegments;
-  
-//   // On regarde chaque vol aller
-//   volsAller.forEach((vol) => {
-//     const depart = vol.segment.source.station.name;
-//     const arrivee = vol.segment.destination.station.name;
-//     console.log(`   De ${depart} vers ${arrivee}`);
-//   });
-//   // --- VOLS RETOUR ---
-//   console.log("🛬 Vols retour :");
-  
-//   const volsRetour = itineraire.inbound.sectorSegments;
-  
-//   // On regarde chaque vol retour
-//   volsRetour.forEach((vol) => {
-//     const depart = vol.segment.source.station.name;
-//     const arrivee = vol.segment.destination.station.name;
-//     console.log(`   De ${depart} vers ${arrivee}`);
-//   });
-
-//   // On affiche le prix
-//   const prix = itineraire.price.amount;
-
-//   console.log(`💰 Prix : ${prix}€`);
-//   console.log("------------------------");
-// });
