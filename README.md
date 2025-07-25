@@ -26,5 +26,6 @@ Dans l'apres midi, il faudra indiquer les dates.
 A chaque chargement, le billet d'avion change. 
 Nous avons reussi à intégrer un calendrier fonctionnel dans notre page HTML.
 
-Vendredi 25 juil 2025: Le programme de demain: recuperer les valeurs des calendriers dans des variables et nous changeront grâce a ses variables , les parametres de l'URL. 
+Vendredi 25 juil 2025: Le programme de demain: recuperer les valeurs des calendriers dans des variables.
+Nous changerons, grâce a ses variables, les parametres de l'URL. 
 
