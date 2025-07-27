@@ -24,9 +24,32 @@ console.log("en dehors du listener :", arrivee)
 
 // selectOutbound.addEventListener("change")
 
+// Fonction pour créer un segment de vol (élimine la duplication)
+function createFlightSegment(segment, index ) {
+  const from = segment.source.station.name;
+  const to = segment.destination.station.name;
+  const departureDate = segment.source.localTime;
+  const arrivalDate = segment.destination.localTime;
+  const departureCode = segment.source.station.code;
+  const arrivalCode = segment.destination.station.code
+
+  const title = document.createElement("p");
+      title.textContent = `  🛬 Segment retour ${index + 1} : ${from} (${departureCode}) → ${to} (${arrivalCode})`;
+
+  // départ
+  const dep = document.createElement("p");
+      dep.textContent = `Départ : ${departureDate}`
+  
+  // arrivée
+  const arr = document.createElement("p")
+      arr.textContent = `Arrivée : ${arrivalDate}`;
+
+return {title, dep, arr}
+}
 
 async function getFlights() {
   cout.innerHTML = ""
+
   let outboundValue = selectOutbound.value
   let inboundValue = selectInbound.value
   let departDate = depart; // valeur par défaut si pas de sélection
@@ -41,7 +64,7 @@ let url = `https://kiwi-com-cheap-flights.p.rapidapi.com/round-trip?source=Count
   const options = {
     method: 'GET',
     headers: {
-      'x-rapidapi-key': '7bec869ebcmsh6281117749bd219p103834jsncdd4bd9be29',
+      'x-rapidapi-key': '7bec869ebcmsh6281117749bd219p103834jsncdd4bd9be293',
       'x-rapidapi-host': 'kiwi-com-cheap-flights.p.rapidapi.com'
     }
   }
@@ -54,14 +77,16 @@ let url = `https://kiwi-com-cheap-flights.p.rapidapi.com/round-trip?source=Count
 
   printTickets.forEach((itinerary) => {
     console.log("➡️ Itinéraire :");
+
     const outboundSegments = itinerary.outbound.sectorSegments;
     const inboundSegments = itinerary.inbound.sectorSegments;
     const flightTime = itinerary.outbound.duration;
     const price = itinerary.price.amount
 
+    const container = document.createElement("div")
+
     // FlightTime
 
-    const container = document.createElement("div")
     const duration = document.createElement("p")
     duration.textContent = `Durée de vol aller : ${flightTime} minutes`;
     container.appendChild(duration);
@@ -73,29 +98,15 @@ let url = `https://kiwi-com-cheap-flights.p.rapidapi.com/round-trip?source=Count
     priceTag.textContent = `Prix ${price} €`
     container.appendChild(priceTag)
 
-
-
     // Departure
 
     outboundSegments.forEach((segmentWrapper, i) => {
       const segment = segmentWrapper.segment;
-      const from = segment.source.station.name;
-      const to = segment.destination.station.name;
-      const departureDate = segment.source.localTime
-      const arrivalDate = segment.destination.localTime
-      const departureCode = segment.source.station.code
-      const arrivalCode = segment.destination.station.code
-      const title = document.createElement("p");
-      title.textContent = `  🛫 Segment aller ${i + 1} : ${from} (${departureCode}) → ${to} (${arrivalCode})`;
-      container.appendChild(title);
+      const segmentElement = createFlightSegment(segment, i, 'outbound')
 
-      const dep = document.createElement("p");
-      dep.textContent = `Départ : ${departureDate}`;
-      container.appendChild(dep);
-
-      const arr = document.createElement("p")
-      arr.textContent = `Arrivée : ${arrivalDate}`;
-      container.appendChild(arr);
+      container.appendChild(segmentElement.title)
+      container.appendChild(segmentElement.dep);
+      container.appendChild(segmentElement.arr)
 
       console.log("VALEUR", outboundValue)
     })
@@ -104,34 +115,19 @@ let url = `https://kiwi-com-cheap-flights.p.rapidapi.com/round-trip?source=Count
 
     inboundSegments.forEach((segmentWrapper, i) => {
       const segment = segmentWrapper.segment;
-      const from = segment.source.station.name;
-      const to = segment.destination.station.name;
-      const departureDate = segment.source.localTime
-      const arrivalDate = segment.destination.localTime
-      const departureCode = segment.source.station.code
-      const arrivalCode = segment.destination.station.code
+      const segmentElement = createFlightSegment(segment, i, 'inbound')
+      
+      container.appendChild(segmentElement.title)
+      container.appendChild(segmentElement.dep);
+      container.appendChild(segmentElement.arr);
 
-      const title = document.createElement("p");
-      title.textContent = `  🛬 Segment retour ${i + 1} : ${from} (${departureCode}) → ${to} (${arrivalCode})`;
-      container.appendChild(title)
-
-      const dep = document.createElement("p");
-      dep.textContent = `Départ : ${departureDate}`;
-      container.appendChild(dep);
-
-      const arr = document.createElement("p")
-      arr.textContent = `Arrivée : ${arrivalDate}`;
-      container.appendChild(arr);
-
+      console.log("VALEUR", inboundValue)
+    })
       //Ligne de separation
       const hr = document.createElement("hr");
       container.appendChild(hr)
 
       cout.appendChild(container);
 
-      console.log("VALEUR", inboundValue)
-    })
-
-
-  });
+    });
 };
