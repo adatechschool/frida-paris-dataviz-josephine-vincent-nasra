@@ -18,7 +18,6 @@
   <h2> Réservez votre vol !</h2>
     <input type ="date" id="outboundDeparture"> 
     <input type ="date" id="inboundDeparture">
-    <button onclick= "test()" id="testeuh">Ceci est un bouton</button>
     
     <!-- Aller -->
     <label for="outbound">Billet aller :</label>
@@ -41,6 +40,8 @@
         <option value="ID">Indonésie</option>
         <option value="BS">Bahamas</option>
     </select>
+
+    <button onclick= "getFlights()" id="btnSearchFlights">Recherche</button>
     
     <div id="cout"></div>
       <div class="cloud cloud1"></div>
