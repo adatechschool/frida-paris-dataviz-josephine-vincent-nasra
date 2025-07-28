@@ -1,5 +1,5 @@
 const cout = document.getElementById("cout")
-const testeuh = document.getElementById("testeuh")
+const btnSerch = document.getElementById("btnSearchFlights")
 const selectOutbound = document.getElementById("outbound")
 const selectInbound = document.getElementById("inbound")
 const departureOutbound = document.getElementById("outboundDeparture")
@@ -25,7 +25,7 @@ console.log("en dehors du listener :", arrivee)
 // selectOutbound.addEventListener("change")
 
 
-async function test() {
+async function getFlights() {
   cout.innerHTML = ""
   let outboundValue = selectOutbound.value
   let inboundValue = selectInbound.value
