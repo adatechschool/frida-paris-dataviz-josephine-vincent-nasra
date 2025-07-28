@@ -98,6 +98,8 @@ let url = `https://kiwi-com-cheap-flights.p.rapidapi.com/round-trip?source=Count
       container.appendChild(arr);
 
       console.log("VALEUR", outboundValue)
+
+	  
     })
 
     // Arrival
