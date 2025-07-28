@@ -4,35 +4,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script defer src="test.js"></script>
+  <script defer src="testClean.js"></script>
   <link rel = "stylesheet" href="style.css">
   <title>Document</title>
 </head>
 
 <body>
     <input type ="date" id="outboundDeparture"> 
+    <input type ="date" id="outboundArrival">
     <input type ="date" id="inboundDeparture">
+    <input type ="date" id="inboundArrival">
+
     
     <!-- Aller -->
     <label for="outbound">Billet aller :</label>
   <select id="outbound">
-      <option value="FR">France</option>
-      <option value="IT">Italie</option>
-      <option value="KM">Comores</option>
-      <option value="MY">Malaisie</option>
-      <option value="ID">Indonésie</option>
-      <option value="BS">Bahamas</option>
+      <option value="paris_fr">France</option>
+      <option value="milan_it">Italie</option>
+      <option value="moroni_km">Comores</option>
+      <option value="jakarta_id">Indonésie</option>
+      <option value="nassau_bs">Bahamas</option>
     </select>
     
     <!-- Retour -->
     <label for="inbound">Billet retour :</label>
     <select id="inbound">
-        <option value="FR">France</option>
-        <option value="IT">Italie</option>
-        <option value="KM">Comores</option>
-        <option value="MY">Malaisie</option>
-        <option value="ID">Indonésie</option>
-        <option value="BS">Bahamas</option>
+      <option value="paris_fr">France</option>
+      <option value="milan_it">Italie</option>
+      <option value="moroni_km">Comores</option>
+      <option value="jakarta_id">Indonésie</option>
+      <option value="nassau_bs">Bahamas</option>
     </select>
 
     <button onclick= "getFlights()" id="btnSearchFlights">Recherche</button>
