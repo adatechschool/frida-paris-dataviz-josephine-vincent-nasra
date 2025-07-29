@@ -30,3 +30,5 @@ Vendredi 25 juil 2025: Le programme de demain: recuperer les valeurs des calendr
 Nous changerons, grâce a ses variables, les parametres de l'URL. 
 
 Lundi 28 juil 2025: Nous allons nous concentrés sur la partie CSS et essayés de resoudre quelques problemes que nous avons.
+
+Mercredi 30 Il faut faire un calcule pour traduire

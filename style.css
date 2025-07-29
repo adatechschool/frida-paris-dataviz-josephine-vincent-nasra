@@ -6,12 +6,10 @@ html, body {
 
 }
 
-.site-header {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 20px 40px;
-  gap: 15px;
+h2{
+  position: absolute;
+  top: 150px;
+  left: 175px;
 }
 
 #logo {
@@ -26,7 +24,7 @@ html, body {
 
 
 h2 {
-  text-align: left;
+  text-align: center;
   margin-top: 10px;
   margin-left: -140px;
   font-size: 1.5rem; 

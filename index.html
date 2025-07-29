@@ -5,27 +5,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script defer src="testOLD.js"></script>
-  <link rel = "stylesheet" href="style.css">
-  <title>Document</title>
-  
+  <link rel="stylesheet" href="style.css">
+  <title>Réservation de vol</title>
 </head>
 
 <body>
 
-  <img id = "logo" src = " image/logo.png">
-    <header class="site-header">
-   </header>
+  <!-- Logo -->
+  <img id="logo" src="image/logo.png" alt="logo" />
 
-  <h2> Réservez votre vol !</h2>
-    <input type ="date" id="outboundDeparture"> 
-    <input type ="date" id="outboundArrival">
-    <input type ="date" id="inboundDeparture">
-    <input type ="date" id="inboundArrival">
+  <!-- Titre principal -->
+  <h2>Réservez votre vol !</h2>
 
-    
-    <!-- Aller -->
+  <!-- Formulaire de recherche -->
+  <div class="centered">
+
+    <!-- Section billets aller -->
     <label for="outbound">Billet aller :</label>
-  <select id="outbound">
+    <input type="date" id="outboundDeparture" />
+    <input type="date" id="outboundArrival" />
+
+    <!-- Section billets retour -->
+    <label for="inbound">Billet retour :</label>
+    <input type="date" id="inboundDeparture" />
+    <input type="date" id="inboundArrival" />
+
+    <!-- Sélection des destinations -->
+    <label for="outbound">Départ :</label>
+    <select id="outbound">
       <option value="warsaw_pl">Pologne</option>
       <option value="paris_fr">France</option>
       <option value="milan_it">Italie</option>
@@ -33,9 +40,8 @@
       <option value="jakarta_id">Indonésie</option>
       <option value="nassau_bs">Bahamas</option>
     </select>
-    
-    <!-- Retour -->
-    <label for="inbound">Billet retour :</label>
+
+    <label for="inbound">Arrivée :</label>
     <select id="inbound">
       <option value="dubrovnik_hr">Croatie</option>
       <option value="paris_fr">France</option>
@@ -45,14 +51,20 @@
       <option value="nassau_bs">Bahamas</option>
     </select>
 
-    
-<button onclick= "getFlights()" id="btnSearchFlights"> <img src="image/loupe.png" alt="rechercher" style="width:16px; vertical-align:middle;"></button>
- 
-</button>
+    <!-- Bouton de recherche -->
+    <button id="btnSearchFlights">
+      <img src="image/loupe.png" alt="rechercher" style="width:16px; vertical-align:middle;" />
+    </button>
+
+    <!-- Résultat des vols -->
     <div id="cout"></div>
-      <div class="cloud cloud1"></div>
+  </div>
+
+  <!-- Nuages décoratifs -->
+  <div class="cloud cloud1"></div>
   <div class="cloud cloud2"></div>
   <div class="cloud cloud3"></div>
+
 </body>
 
 </html>
