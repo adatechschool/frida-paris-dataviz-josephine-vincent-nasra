@@ -138,4 +138,4 @@ async function getFlights() {
 }
 
 // Démarrage : on met les écouteurs
-setupDateInputs();
+setupDateInputs() ;
