@@ -11,10 +11,11 @@
 </head>
 
 <body>
-    <header class="site-header">
-    <img src="logo.png" alt="Logo du site" class="logo" />
 
-  </header>
+  <img id = "logo" src = " image/logo.png">
+    <header class="site-header">
+   </header>
+
   <h2> Réservez votre vol !</h2>
     <input type ="date" id="outboundDeparture"> 
     <input type ="date" id="outboundArrival">
@@ -44,8 +45,10 @@
       <option value="nassau_bs">Bahamas</option>
     </select>
 
-    <button onclick= "getFlights()" id="btnSearchFlights">Recherche</button>
     
+<button onclick= "getFlights()" id="btnSearchFlights"> <img src="image/loupe.png" alt="rechercher" style="width:16px; vertical-align:middle;"></button>
+ 
+</button>
     <div id="cout"></div>
       <div class="cloud cloud1"></div>
   <div class="cloud cloud2"></div>
