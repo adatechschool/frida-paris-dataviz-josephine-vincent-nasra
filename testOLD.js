@@ -89,7 +89,7 @@ async function getFlights() {
   const options = {
     method: "GET",
     headers: {
-      "x-rapidapi-key": "a9f33f4830msh17854c7e78b4bedp1fa568jsnbd2ca1166df0",
+      "x-rapidapi-key": "a9f33f4830msh17854c7e78b4bedp1fa568jsnbd2ca1166df",
       "x-rapidapi-host": "kiwi-com-cheap-flights.p.rapidapi.com"
     }
   };
