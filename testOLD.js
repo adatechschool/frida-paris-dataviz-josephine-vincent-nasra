@@ -1,26 +1,37 @@
 const cout = document.getElementById("cout")
-const btnSerch = document.getElementById("btnSearchFlights")
+const btnSearch = document.getElementById("btnSearchFlights")
 const selectOutbound = document.getElementById("outbound")
 const selectInbound = document.getElementById("inbound")
-const departureOutbound = document.getElementById("outboundDeparture")
-const departureInbound = document.getElementById("inboundDeparture")
 
-let depart;
-let arrivee;
+const departureOutbound = document.getElementById("outboundDeparture")
+const arrivalOutbound = document.getElementById("outboundArrival")
+const departureInbound = document.getElementById("inboundDeparture")
+const arrivalInbound = document.getElementById("inboundArrival")
+
+let firstFlightTakeOff;
+let firstFlightLanding;
+let secondFlightTakeOff;
+let secondFlightLanding;
 
 
 departureOutbound.addEventListener("change", () => {
-  depart = departureOutbound.value
-  console.log("dans le listener :", depart)
+  firstFlightTakeOff = departureOutbound.value
+  console.log("Départ aller :", firstFlightTakeOff)
 })
 
+arrivalOutbound.addEventListener("change", () => {
+  firstFlightLanding = arrivalOutbound.value
+  console.log("Arrivée aller :", firstFlightLanding)
+})
 departureInbound.addEventListener("change", () => {
-  arrivee = departureInbound.value
-  console.log("dans le listener :", arrivee)
+  secondFlightTakeOff = departureInbound.value
+  console.log("Départ retour :", secondFlightTakeOff)
 })
 
-console.log("en dehors du listener :", depart)
-console.log("en dehors du listener :", arrivee)
+arrivalInbound.addEventListener("change", () => {
+  secondFlightLanding = arrivalInbound.value
+  console.log("Arrivée retour :", secondFlightLanding)
+})
 
 // selectOutbound.addEventListener("change")
 
@@ -29,21 +40,17 @@ async function getFlights() {
   cout.innerHTML = ""
   let outboundValue = selectOutbound.value
   let inboundValue = selectInbound.value
-  let departDate = depart; // valeur par défaut si pas de sélection
-  let returnDate = arrivee; // valeur par défaut si pas de sélection
 
-// let url = `https://kiwi-com-cheap-flights.p.rapidapi.com/round-trip?source=Country%3A${outboundValue}&destination=Country%3A${inboundValue}&currency=eur&locale=en&adults=1&children=0&infants=0&handbags=1&holdbags=0&cabinClass=ECONOMY&sortBy=QUALITY&sortOrder=ASCENDING&applyMixedClasses=false&allowReturnFromDifferentCity=false&allowChangeInboundDestination=false&allowChangeInboundSource=false&allowDifferentStationConnection=false&enableSelfTransfer=false&allowOvernightStopover=false&enableTrueHiddenCity=false&enableThrowAwayTicketing=false&outbound=SUNDAY%2CWEDNESDAY%2CTHURSDAY%2CFRIDAY%2CSATURDAY%2CMONDAY%2CTUESDAY&transportTypes=FLIGHT&contentProviders=FLIXBUS_DIRECTS%2CFRESH%2CKAYAK%2CKIWI&inboundDepartureDateStart=${returnDate}T00%3A00%3A00&outboundDepartureDateStart=${departDate}T00%3A00%3A00`;
-
-const url = 'https://kiwi-com-cheap-flights.p.rapidapi.com/round-trip?source=Country%3AGB&destination=City%3Adubrovnik_hr&currency=usd&locale=en&adults=1&children=0&infants=0&handbags=1&holdbags=0&cabinClass=ECONOMY&sortBy=QUALITY&sortOrder=ASCENDING&applyMixedClasses=true&allowReturnFromDifferentCity=true&allowChangeInboundDestination=true&allowChangeInboundSource=true&allowDifferentStationConnection=true&enableSelfTransfer=true&allowOvernightStopover=true&enableTrueHiddenCity=true&enableThrowAwayTicketing=true&outbound=SUNDAY%2CWEDNESDAY%2CTHURSDAY%2CFRIDAY%2CSATURDAY%2CMONDAY%2CTUESDAY&transportTypes=FLIGHT&contentProviders=FLIXBUS_DIRECTS%2CFRESH%2CKAYAK%2CKIWI&limit=20&inboundDepartureDateStart=2025-11-01T00%3A00%3A00&inboundDepartureDateEnd=2025-11-10T00%3A00%3A00&outboundDepartmentDateStart=2025-12-20T00%3A00%3A00&outboundDepartmentDateEnd=2025-12-30T00%3A00%3A00'
+const url = `https://kiwi-com-cheap-flights.p.rapidapi.com/round-trip?source=City%3A${outboundValue}&destination=City%3A${inboundValue}&currency=eur&locale=en&adults=1&children=0&infants=0&handbags=1&holdbags=0&cabinClass=ECONOMY&sortBy=QUALITY&sortOrder=ASCENDING&applyMixedClasses=true&allowReturnFromDifferentCity=true&allowChangeInboundDestination=true&allowChangeInboundSource=true&allowDifferentStationConnection=true&enableSelfTransfer=true&allowOvernightStopover=true&enableTrueHiddenCity=true&enableThrowAwayTicketing=true&outbound=SUNDAY%2CWEDNESDAY%2CTHURSDAY%2CFRIDAY%2CSATURDAY%2CMONDAY%2CTUESDAY&transportTypes=FLIGHT&contentProviders=FLIXBUS_DIRECTS%2CFRESH%2CKAYAK%2CKIWI&limit=20&inboundDepartureDateStart=${firstFlightTakeOff}T00%3A00%3A00&inboundDepartureDateEnd=${firstFlightLanding}T00%3A00%3A00&&outboundDepartmentDateStart=${secondFlightTakeOff}T00%3A00%3A00&outboundDepartmentDateEnd=${secondFlightLanding}T00%3A00%3A00`
 ; //Depart atterissage = arrival outbound
-  console.log("c'est la date de depart" , departDate)
-  console.log("c'est la date de retour" , returnDate)
+  // console.log("c'est la date de depart" , departDate)
+  // console.log("c'est la date de retour" , returnDate)
   console.log("C'EST L'URL :", url)
 
   const options = {
     method: 'GET',
     headers: {
-      'x-rapidapi-key': '7bec869ebcmsh6281117749bd219p103834jsncdd4bd9be29',
+      'x-rapidapi-key': 'a9f33f4830msh17854c7e78b4bedp1fa568jsnbd2ca1166df0',
       'x-rapidapi-host': 'kiwi-com-cheap-flights.p.rapidapi.com'
     }
   }
@@ -114,7 +121,7 @@ const url = 'https://kiwi-com-cheap-flights.p.rapidapi.com/round-trip?source=Cou
       const arrivalCode = segment.destination.station.code
 
       const title = document.createElement("p");
-      title.textContent = `  🛬 Segment retour ${i + 1} : ${from} (${departureCode}) → ${to} (${arrivalCode})`;
+      title.textContent = `  🛬 Segment retour ${i + 2} : ${from} (${departureCode}) → ${to} (${arrivalCode})`;
       container.appendChild(title)
 
       const dep = document.createElement("p");
