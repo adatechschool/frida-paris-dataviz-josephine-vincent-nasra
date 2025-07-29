@@ -1,3 +1,131 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: linear-gradient(to bottom, #87ceeb, #f4f4f4);
+
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px 40px;
+  gap: 15px;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+  margin-bottom: 550px
+}
+
+
+
+h2 {
+  text-align: left;
+  margin-top: 10px;
+margin-left: -140px;
+  font-size: 1.5rem; 
+  color: #004080;
+  white-space: nowrap;
+
+}
+
 body {
-background-color: rgb(76, 76, 76);
-}    
+  display: flex;
+  justify-content: center; /* Centrage horizontal */
+  align-items: center;     /* Centrage vertical */
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #87ceeb, #f4f4f4);
+}
+
+.centered {
+  text-align: center;
+}
+
+/* 📋 Formulaire */
+label {
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+select,
+input[type="date"] {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  padding: 8px;
+  width: 250px;
+  max-width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* 🟦 Bouton */
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 160px;
+
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* 💬 Affichage du résultat */
+#cout {
+  margin-top: 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* ☁️ Nuages animés */
+.cloud {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  box-shadow: 30px 10px white, 60px 15px white, 90px 10px white;
+  width: 80px;
+  height: 40px;
+  animation: floatClouds 60s linear infinite;
+  z-index: 0;
+}
+
+.cloud1 {
+  top: 50px;
+  left: -200px;
+  animation-duration: 60s;
+  animation-delay: 0s;
+}
+
+.cloud2 {
+  top: 120px;
+  left: -300px;
+  animation-duration: 80s;
+  animation-delay: 10s;
+}
+
+.cloud3 {
+  top: 200px;
+  left: -400px;
+  animation-duration: 100s;
+  animation-delay: 20s;
+}
+
+@keyframes floatClouds {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(150vw);
+  }
+}
