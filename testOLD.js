@@ -112,14 +112,14 @@ async function getFlights() {
       container.appendChild(createTextLine("Prix " + price + " €"));
 
       // Segments aller
-      itinerary.outbound.sectorSegments.forEach(function (segmentWrapper, index) {
+      itinerary.outbound.sectorSegments.forEach( (segmentWrapper, index) => {
         const segment = segmentWrapper.segment;
         displaySegment(container, segment, index, "outbound");
         console.log("VALEUR", outboundValue);
       });
 
       // Segments retour
-      itinerary.inbound.sectorSegments.forEach(function (segmentWrapper, index) {
+      itinerary.inbound.sectorSegments.forEach((segmentWrapper, index) =>{
         const segment = segmentWrapper.segment;
         displaySegment(container, segment, index, "inbound");
 
