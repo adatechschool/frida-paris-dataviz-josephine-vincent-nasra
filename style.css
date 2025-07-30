@@ -1,69 +1,93 @@
+/* --- Réinitialisation de base et mise en page globale --- */
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  background: linear-gradient(to bottom, #87ceeb, #f4f4f4);
-
+  height: 100%; /* S'assure que le corps prend toute la hauteur de la fenêtre */
+  font-family: Arial, sans-serif; /* Définit la police de base pour tout le document */
+  color: #333; /* Couleur de texte par défaut */
+  background: linear-gradient(to bottom, #87ceeb, #f4f4f4); /* Dégradé de fond ciel */
+  display: flex; /* Utilise Flexbox pour organiser les éléments */
+  flex-direction: column; /* Empile les éléments verticalement */
+  min-height: 100vh; /* S'assure que le corps prend au moins toute la hauteur de la vue */
+  position: relative; /* Pour positionner les nuages par rapport au corps */
+  overflow-x: hidden; /* Empêche le défilement horizontal */
 }
 
-
+/* --- Section En-tête --- */
 #logo {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 150px; 
+  width: 150px;
   height: auto;
-  mix-blend-mode: multiply;
+  mix-blend-mode: multiply; /* Mode de fusion pour un effet sur le fond */
+  margin-top: 0px;
+  margin-bottom: 10px;
 }
-
-
 
 h2 {
   text-align: center;
-  margin-top: 10px;
-  margin-left: -140px;
-  font-size: 1.5rem; 
+  margin-bottom: 30px;
+  font-size: 1.8rem;
   color: #004080;
-  white-space: nowrap;
-
+  white-space: nowrap; /* Empêche le titre de passer à la ligne */
 }
 
-body {
+/* --- Section des contrôles de vol (Barre de recherche) --- */
+.flight-controls {
+  background-color: transparent;
+  padding: 20px 30px;
+  border-radius: 10px;
   display: flex;
-  justify-content: center; /* Centrage horizontal */
-  align-items: center;     /* Centrage vertical */
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, #87ceeb, #f4f4f4);
+  flex-wrap: wrap; /* Permet le passage à la ligne des éléments */
+  gap: 25px; /* Espace entre les groupes de contrôles */
+  justify-content: center;
+  align-items: flex-end; /* Aligne les éléments en bas (labels vs inputs) */
+  margin:0px auto 40px auto;
+  /* width: 90%;
+  max-width: 1100px; */
+  flex-direction: column;
+}
+#selection {
+  display: flex;
+  gap: 25px; 
 }
 
-.centered {
-  text-align: center;
+/* Styles pour les groupes d'entrées (dates, sélecteurs) */
+.date-inputs-group,
+.select-inputs-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-/* 📋 Formulaire */
-label {
+.flight-controls label {
   display: block;
-  margin-top: 20px;
   font-weight: bold;
+  color: #555;
+  margin-bottom: 2px;
 }
 
-select,
-input[type="date"] {
-  display: block;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  padding: 8px;
-  width: 250px;
-  max-width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.flight-controls select,
+.flight-controls input[type="date"] {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  min-width: 160px;
+  box-sizing: border-box; /* Inclut padding et border dans la largeur */
+  background-color: #f9f9f9;
 }
 
+#buttonSearch{
 
+  margin: auto; 
+
+}
+/* --- Style du bouton de recherche --- */
 #btnSearchFlights {
-  position: absolute;
-  top: 70%;
-  left: 50%;
+  position: flex;
+  /* top: 400px;
+  left: 600px; */
+  top: 83%;
+  left: 47%;
   background-color: transparent;
   border: none;
   padding: 6px;
@@ -138,16 +162,210 @@ input[type="date"] {
 
 #btnSearchFlights:hover {
   background-color: #0056b3;
-}
+} 
 
-/* 💬 Affichage du résultat */
+/* --- Conteneur des cartes de vol --- */
 #cout {
   margin-top: 30px;
-  font-size: 1.2rem;
-  font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px; /* Espace entre les cartes */
+  padding: 0 20px;
+  width: 100%;
+  max-width: 1200px;
 }
 
-/* ☁️ Nuages animés */
+/* --- Style d'une carte de vol individuelle --- */
+.flight-card {
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+  border: 2px solid #e0e8ff;
+  border-radius: 20px;
+  padding: 25px;
+  width: calc(33.333% - 25px); /* Trois cartes par ligne */
+  min-width: 280px;
+  max-width: 500px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.flight-card::before {
+  content: '';
+  position:absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #06b6d4); /* Bande de couleur supérieure */
+}
+
+.flight-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.flight-duration {
+  background: rgba(99, 102, 241, 0.1);
+  color: #4338ca;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.flight-price {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1e40af;
+}
+
+/* Conteneur pour les segments de vol */
+.flight-segments-container {
+    display: flex;
+    flex-direction:column;
+    gap: 15px;
+}
+
+/* Style d'un segment de vol (aller/retour) */
+.flight-segment {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 15px 0; /* Marge verticale entre les segments */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.segment-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.segment-badge {
+  color: white;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: lowercase;
+  background: #374151; /* Couleur par défaut */
+}
+
+.segment-badge.inbound {
+  background: #6b7280; /* Couleur spécifique pour 'Retour' */
+}
+
+.flight-route {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.airport-info {
+  text-align: center;
+  flex: 1;
+}
+
+.airport-code {
+  font-size: 22px;
+  font-weight: bold;
+  color: #1e40af;
+  margin-bottom: 5px;
+}
+
+.airport-date {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.flight-arrow {
+  margin: 0 20px;
+  color: #6366f1;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flight-arrow .plane-icon { /* Cible l'icône SVG de l'avion */
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.flight-arrow span {
+    margin-left: 5px;
+}
+
+.flight-times {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.time-info {
+  text-align: center;
+}
+
+.time-label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 5px;
+}
+
+.time-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* Section de réservation (boutons) */
+.booking-section {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px dashed #e5e7eb;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px; /* Espace entre les boutons de réservation */
+}
+
+.booking-button {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.booking-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+}
+
+.booking-button .booking-icon {
+    font-size: 1.1em;
+}
+
+/* --- Animation des nuages --- */
 .cloud {
   position: absolute;
   background: white;
@@ -182,10 +400,70 @@ input[type="date"] {
 }
 
 @keyframes floatClouds {
-  from {
-    transform: translateX(0);
+  from { transform: translateX(0); }
+  to { transform: translateX(150vw); }
+}
+
+/* --- Design Responsive --- */
+@media (max-width: 1150px) {
+  .flight-controls {
+    flex-direction: column;
+    align-items: center;
   }
-  to {
-    transform: translateX(150vw);
+  .date-inputs-group,
+  .select-inputs-group {
+    width: 100%;
+    align-items: center;
   }
+  .flight-controls select,
+  .flight-controls input[type="date"] {
+    width: 80%;
+    max-width: 300px;
+  }
+  #btnSearchFlights {
+    width: 80%;
+    max-width: 300px;
+  }
+  .flight-card {
+    width: calc(50% - 25px); /* Deux cartes par ligne sur les écrans moyens */
+  }
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+  .flight-controls {
+    padding: 15px 20px;
+    gap: 15px;
+  }
+  .flight-controls select,
+  .flight-controls input[type="date"],
+  #btnSearchFlights {
+    width: 95%;
+  }
+  .flight-card {
+    width: 95%; /* Une seule carte par ligne sur les petits écrans */
+    margin: 0 auto;
+  }
+  .flight-route {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .flight-arrow {
+    transform: rotate(90deg); /* Rotation de la flèche pour le mode vertical */
+    margin: 10px 0;
+  }
+  .plane-icon {
+    transform: rotate(-90deg); /* Ajuste la rotation de l'icône de l'avion */
+  }
+  .flight-times {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* Nettoyage : s'assurer que cette classe n'est plus utilisée dans votre HTML */
+.centered {
+  display: none;
 }

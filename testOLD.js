@@ -1,4 +1,3 @@
-// Sélection des éléments HTML
 const cout = document.getElementById("cout");
 const btnSearch = document.getElementById("btnSearchFlights");
 const selectOutbound = document.getElementById("outbound");
@@ -9,67 +8,95 @@ const arrivalOutbound = document.getElementById("outboundArrival");
 const departureInbound = document.getElementById("inboundDeparture");
 const arrivalInbound = document.getElementById("inboundArrival");
 
+// Récupère les modèles HTML
+const flightCardTemplate = document.getElementById("flightCardTemplate");
+const flightSegmentTemplate = document.getElementById("flightSegmentTemplate");
+const bookingButtonTemplate = document.getElementById("bookingButtonTemplate");
+
 // Variables de dates
 let firstFlightTakeOff;
 let firstFlightLanding;
 let secondFlightTakeOff;
 let secondFlightLanding;
 
-// Fonction pour écouter les changements de dates
+// Fonction pour configurer les écouteurs de changements de dates
 function setupDateInputs() {
-  departureOutbound.addEventListener("change", function () {
+  departureOutbound.addEventListener("change",() => {
     firstFlightTakeOff = departureOutbound.value;
     console.log("Départ aller :", firstFlightTakeOff);
   });
 
-  arrivalOutbound.addEventListener("change", function () {
+  arrivalOutbound.addEventListener("change",() => {
     firstFlightLanding = arrivalOutbound.value;
     console.log("Arrivée aller :", firstFlightLanding);
   });
 
-  departureInbound.addEventListener("change", function () {
+  departureInbound.addEventListener("change", () => {
     secondFlightTakeOff = departureInbound.value;
     console.log("Départ retour :", secondFlightTakeOff);
   });
 
-  arrivalInbound.addEventListener("change", function () {
+  arrivalInbound.addEventListener("change",() => {
     secondFlightLanding = arrivalInbound.value;
     console.log("Arrivée retour :", secondFlightLanding);
   });
 }
 
-// Fonction pour créer une ligne de texte <p>
-function createTextLine(text) {
-  const p = document.createElement("p");
-  p.textContent = text;
-  return p;
+// Fonction pour formater la date (ex: "30 juil.")
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const months = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin',
+                  'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
+  return date.getDate() + ' ' + months[date.getMonth()];
 }
 
-// Fonction pour afficher un segment de vol (aller ou retour)
-function displaySegment(container, segment, index, type) {
-  const from = segment.source.station.name;
-  const to = segment.destination.station.name;
+// Fonction pour formater l'heure (ex: "14:30")
+function formatTime(dateTimeString) {
+  const date = new Date(dateTimeString);
+  return date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+}
+
+// La fonction createPlaneIcon (qui générait le SVG de l'avion) a été supprimée.
+
+// Fonction pour afficher un seul segment de vol (aller ou retour)
+function displaySegment(segmentsContainer, segment, type) {
+  // Clone le contenu du modèle
+  const segmentClone = flightSegmentTemplate.content.cloneNode(true);
+  const segmentDiv = segmentClone.querySelector(".flight-segment");
+
   const fromCode = segment.source.station.code;
   const toCode = segment.destination.station.code;
-  const departureDate = segment.source.localTime;
-  const arrivalDate = segment.destination.localTime;
+  const departureDateTime = segment.source.localTime;
+  const arrivalDateTime = segment.destination.localTime;
 
-  const title = type === "outbound"
-    ? "🛫 Segment aller " + (index + 1) + " : " + from + " (" + fromCode + ") → " + to + " (" + toCode + ")"
-    : "🛬 Segment retour " + (index + 2) + " : " + from + " (" + fromCode + ") → " + to + " (" + toCode + ")";
+  // Remplit les données dans les éléments clonés
+  segmentDiv.querySelector(".segment-badge").textContent = type === "outbound" ? "Aller" : "Retour";
+  segmentDiv.querySelector(".segment-badge").classList.add(type); // Ajoute une classe pour le style
 
-  container.appendChild(createTextLine(title));
-  container.appendChild(createTextLine("Départ : " + departureDate));
-  container.appendChild(createTextLine("Arrivée : " + arrivalDate));
+  segmentDiv.querySelector(".flight-route .airport-info:first-of-type .airport-code").textContent = fromCode;
+  segmentDiv.querySelector(".flight-route .airport-info:first-of-type .airport-date").textContent = formatDate(departureDateTime);
+
+  segmentDiv.querySelector(".flight-route .airport-info:last-of-type .airport-code").textContent = toCode;
+  segmentDiv.querySelector(".flight-route .airport-info:last-of-type .airport-date").textContent = formatDate(arrivalDateTime);
+
+  // La ligne qui insérait l'icône SVG de l'avion a été supprimée.
+  // Si votre HTML attend un élément spécifique (par exemple, un span ou un div) là où l'avion était,
+  // et que son absence cause des problèmes de mise en page, vous devrez peut-être ajuster votre template HTML ou votre CSS.
+
+  segmentDiv.querySelector(".flight-times .time-info:first-of-type .time-value").textContent = formatTime(departureDateTime);
+  segmentDiv.querySelector(".flight-times .time-info:last-of-type .time-value").textContent = formatTime(arrivalDateTime);
+
+  segmentsContainer.appendChild(segmentDiv);
 }
 
 // Fonction principale pour récupérer les vols
 async function getFlights() {
-  cout.innerHTML = ""; // On vide le contenu précédent
+  cout.innerHTML = ""; // Efface les résultats précédents
 
   const outboundValue = selectOutbound.value;
   const inboundValue = selectInbound.value;
 
+  // Construit l'URL (identique à avant)
   const url = "https://kiwi-com-cheap-flights.p.rapidapi.com/round-trip?source=City%3A" +
     outboundValue +
     "&destination=City%3A" +
@@ -101,57 +128,49 @@ async function getFlights() {
 
     console.log("Itinéraires trouvés :", itineraries);
 
-    // Pour chaque itinéraire
     itineraries.forEach(function (itinerary) {
-      const container = document.createElement("div");
+      // Clone le modèle de la carte de vol
+      const cardClone = flightCardTemplate.content.cloneNode(true);
+      const flightCardDiv = cardClone.querySelector(".flight-card");
 
-      const duration = itinerary.outbound.duration;
-      const price = itinerary.price.amount;
+      const duration = Math.round(itinerary.outbound.duration / 60);
+      const price = Math.round(itinerary.price.amount);
 
-      container.appendChild(createTextLine("Durée de vol aller : " + duration + " minutes"));
-      container.appendChild(createTextLine("Prix : " + price + " €"));
+      // Remplit les données d'en-tête
+      flightCardDiv.querySelector(".flight-duration").textContent = `${duration}h de vol`;
+      flightCardDiv.querySelector(".flight-price").textContent = `${price} €`;
 
-      // Segments aller
-      itinerary.outbound.sectorSegments.forEach(function (segmentWrapper, index) {
-        const segment = segmentWrapper.segment;
-        displaySegment(container, segment, index, "outbound");
-        console.log("VALEUR", outboundValue);
+      const segmentsContainer = flightCardDiv.querySelector(".flight-segments-container");
+      // Remplit les segments
+      itinerary.outbound.sectorSegments.forEach((segmentWrapper) => {
+        displaySegment(segmentsContainer, segmentWrapper.segment, "outbound");
+      });
+      itinerary.inbound.sectorSegments.forEach((segmentWrapper) => {
+        displaySegment(segmentsContainer, segmentWrapper.segment, "inbound");
       });
 
-      // Segments retour
-      itinerary.inbound.sectorSegments.forEach(function (segmentWrapper, index) {
-        const segment = segmentWrapper.segment;
-        displaySegment(container, segment, index, "inbound");
-        console.log("VALEUR", inboundValue);
-      });
-
-      // Booking options (avec lien cliquable)
+      // Remplit les options de réservation
+      const bookingSection = flightCardDiv.querySelector(".booking-section");
       const bookingOptions = itinerary.bookingOptions;
       const edges = bookingOptions.edges;
 
       edges.forEach(function (option) {
         const node = option.node;
-        const bookingUrl = node.bookingUrl; // URL relative
-        const providerName = node.itineraryProvider.name; // Exemple : "Kiwi.com"
+        const bookingUrl = node.bookingUrl;
+        const providerName = node.itineraryProvider.name;
 
-        // Construction de l’URL complète
         const fullUrl = `https://www.${providerName}${bookingUrl}`;
 
-        const linkButton = document.createElement("a");
+        const buttonClone = bookingButtonTemplate.content.cloneNode(true);
+        const linkButton = buttonClone.querySelector(".booking-button");
+
         linkButton.href = fullUrl;
-        linkButton.innerHTML = `<button>🔗 Réserver</button>`;
-        linkButton.style.textDecoration = "none"; // facultatif pour retirer soulignement
+        linkButton.querySelector(".booking-provider-name").textContent = `Réserver avec ${providerName}`;
 
-        container.appendChild(linkButton);
-
+        bookingSection.appendChild(linkButton);
       });
 
-
-
-      const hr = document.createElement("hr");
-      container.appendChild(hr);
-
-      cout.appendChild(container);
+      cout.appendChild(flightCardDiv);
     });
 
   } catch (error) {
