@@ -19,7 +19,7 @@ let firstFlightLanding;
 let secondFlightTakeOff;
 let secondFlightLanding;
 
-// Fonction pour configurer les écouteurs de changements de dates
+// Fonction pour configurer les écouteursy  de changements de dates
 function setupDateInputs() {
   departureOutbound.addEventListener("change",() => {
     firstFlightTakeOff = departureOutbound.value;
@@ -79,10 +79,6 @@ function displaySegment(segmentsContainer, segment, type) {
   segmentDiv.querySelector(".flight-route .airport-info:last-of-type .airport-code").textContent = toCode;
   segmentDiv.querySelector(".flight-route .airport-info:last-of-type .airport-date").textContent = formatDate(arrivalDateTime);
 
-  // La ligne qui insérait l'icône SVG de l'avion a été supprimée.
-  // Si votre HTML attend un élément spécifique (par exemple, un span ou un div) là où l'avion était,
-  // et que son absence cause des problèmes de mise en page, vous devrez peut-être ajuster votre template HTML ou votre CSS.
-
   segmentDiv.querySelector(".flight-times .time-info:first-of-type .time-value").textContent = formatTime(departureDateTime);
   segmentDiv.querySelector(".flight-times .time-info:last-of-type .time-value").textContent = formatTime(arrivalDateTime);
 
@@ -97,19 +93,7 @@ async function getFlights() {
   const inboundValue = selectInbound.value;
 
   // Construit l'URL (identique à avant)
-  const url = "https://kiwi-com-cheap-flights.p.rapidapi.com/round-trip?source=City%3A" +
-    outboundValue +
-    "&destination=City%3A" +
-    inboundValue +
-    "&currency=eur&locale=en&adults=1&children=0&infants=0&handbags=1&holdbags=0&cabinClass=ECONOMY&sortBy=QUALITY&sortOrder=ASCENDING&applyMixedClasses=false&allowReturnFromDifferentCity=false&allowChangeInboundDestination=false&allowChangeInboundSource=false&allowDifferentStationConnection=false&enableSelfTransfer=false&allowOvernightStopover=false&enableTrueHiddenCity=false&enableThrowAwayTicketing=false&outbound=SUNDAY%2CWEDNESDAY%2CTHURSDAY%2CFRIDAY%2CSATURDAY%2CMONDAY%2CTUESDAY&transportTypes=FLIGHT&contentProviders=FLIXBUS_DIRECTS%2CFRESH%2CKAYAK%2CKIWI&limit=20&inboundDepartureDateStart=" +
-    firstFlightTakeOff +
-    "T00%3A00%3A00&inboundDepartureDateEnd=" +
-    firstFlightLanding +
-    "T00%3A00%3A00&&outboundDepartmentDateStart=" +
-    secondFlightTakeOff +
-    "T00%3A00%3A00&outboundDepartmentDateEnd=" +
-    secondFlightLanding +
-    "T00%3A00%3A00";
+  const url = `https://kiwi-com-cheap-flights.p.rapidapi.com/round-trip?source=City%3A${outboundValue}&destination=City%3A${inboundValue}&currency=eur&locale=en&adults=1&children=0&infants=0&handbags=1&holdbags=0&cabinClass=ECONOMY&sortBy=QUALITY&sortOrder=ASCENDING&applyMixedClasses=false&allowReturnFromDifferentCity=false&allowChangeInboundDestination=false&allowChangeInboundSource=false&allowDifferentStationConnection=false&enableSelfTransfer=false&allowOvernightStopover=false&enableTrueHiddenCity=false&enableThrowAwayTicketing=false&outbound=SUNDAY%2CWEDNESDAY%2CTHURSDAY%2CFRIDAY%2CSATURDAY%2CMONDAY%2CTUESDAY&transportTypes=FLIGHT&contentProviders=FLIXBUS_DIRECTS%2CFRESH%2CKAYAK%2CKIWI&limit=20&inboundDepartureDateStart=${firstFlightTakeOff}T00%3A00%3A00&inboundDepartureDateEnd=${firstFlightLanding}T00%3A00%3A00&&outboundDepartmentDateStart=${secondFlightTakeOff}T00%3A00%3A00&outboundDepartmentDateEnd=${secondFlightLanding}T00%3A00%3A00`;
 
   console.log("C'EST L'URL :", url);
 
@@ -137,7 +121,7 @@ async function getFlights() {
       const price = Math.round(itinerary.price.amount);
 
       // Remplit les données d'en-tête
-      flightCardDiv.querySelector(".flight-duration").textContent = `${duration}h de vol`;
+      flightCardDiv.querySelector(".flight-duration").textContent = `${duration}minutes de vol`;
       flightCardDiv.querySelector(".flight-price").textContent = `${price} €`;
 
       const segmentsContainer = flightCardDiv.querySelector(".flight-segments-container");
