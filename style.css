@@ -47,6 +47,7 @@ h2 {
 }
 #selection {
   display: flex;
+  gap: 25px; 
 }
 
 /* Styles pour les groupes d'entrées (dates, sélecteurs) */
@@ -75,6 +76,11 @@ h2 {
   background-color: #f9f9f9;
 }
 
+#buttonSearch{
+
+  margin: auto; 
+
+}
 /* --- Style du bouton de recherche --- */
 #btnSearchFlights {
   position: flex;

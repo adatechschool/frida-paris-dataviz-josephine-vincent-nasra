@@ -16,47 +16,47 @@
   <h2>Réservez votre vol !</h2>
 
   <div class="flight-controls">
-    <div id ="selection">
-    <div class="date-inputs-group">
-      <label for="outboundDeparture">Billet aller : </label>
-      <input type="date" id="outboundDeparture" />
-      <input type="date" id="outboundArrival" />
-    </div>
+    <div id="selection">
+      <div class="date-inputs-group">
+        <label for="outboundDeparture">Billet aller : </label>
+        <input type="date" id="outboundDeparture" />
+        <input type="date" id="outboundArrival" />
+      </div>
 
-    <div class="date-inputs-group">
-      <label for="inboundDeparture">Billet retour :</label>
-      <input type="date" id="inboundDeparture" />
-      <input type="date" id="inboundArrival" />
-    </div>
+      <div class="date-inputs-group">
+        <label for="inboundDeparture">Billet retour :</label>
+        <input type="date" id="inboundDeparture" />
+        <input type="date" id="inboundArrival" />
+      </div>
 
-    <div class="select-inputs-group">
-      <label for="outbound">Départ :</label>
-      <select id="outbound">
-        <option value="warsaw_pl">Pologne</option>
-        <option value="paris_fr">France</option>
-        <option value="milan_it">Italie</option>
-        <option value="moroni_km">Comores</option>
-        <option value="jakarta_id">Indonésie</option>
-        <option value="nassau_bs">Bahamas</option>
-      </select>
+      <div class="select-inputs-group">
+        <label for="outbound">Départ :</label>
+        <select id="outbound">
+          <option value="warsaw_pl">Pologne</option>
+          <option value="paris_fr">France</option>
+          <option value="milan_it">Italie</option>
+          <option value="moroni_km">Comores</option>
+          <option value="jakarta_id">Indonésie</option>
+          <option value="nassau_bs">Bahamas</option>
+        </select>
 
-      <label for="inbound">Arrivée :</label>
-      <select id="inbound">
-        <option value="dubrovnik_hr">Croatie</option>
-        <option value="paris_fr">France</option>
-        <option value="milan_it">Italie</option>
-        <option value="moroni_km">Comores</option>
-        <option value="jakarta_id">Indonésie</option>
-        <option value="nassau_bs">Bahamas</option>
-      </select>
+        <label for="inbound">Arrivée :</label>
+        <select id="inbound">
+          <option value="dubrovnik_hr">Croatie</option>
+          <option value="paris_fr">France</option>
+          <option value="milan_it">Italie</option>
+          <option value="moroni_km">Comores</option>
+          <option value="jakarta_id">Indonésie</option>
+          <option value="nassau_bs">Bahamas</option>
+        </select>
+      </div>
     </div>
-    </div>
-    <div id ="buttonSearch">
+    <div id = "buttonSearch" >
     <button id="btnSearchFlights">
       <img src="image/loupe.png" alt="rechercher"></button>
       </div>
   </div>
-
+</div>
   <div id="cout"></div>
 
   <template id="flightCardTemplate">
@@ -66,9 +66,9 @@
         <div class="flight-price"></div>
       </div>
       <div class="flight-segments-container">
-        </div>
+      </div>
       <div class="booking-section">
-        </div>
+      </div>
     </div>
   </template>
 
@@ -104,10 +104,10 @@
   </template>
 
   <template id="bookingButtonTemplate">
-      <a href="#" class="booking-button" target="_blank">
-          <span class="booking-icon">🔗</span>
-          <span class="booking-provider-name"></span>
-      </a>
+    <a href="#" class="booking-button" target="_blank">
+      <span class="booking-icon">🔗</span>
+      <span class="booking-provider-name"></span>
+    </a>
   </template>
 
   <div class="cloud cloud1"></div>
