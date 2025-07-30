@@ -56,7 +56,6 @@ function formatTime(dateTimeString) {
   return date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
 }
 
-// La fonction createPlaneIcon (qui générait le SVG de l'avion) a été supprimée.
 
 // Fonction pour afficher un seul segment de vol (aller ou retour)
 function displaySegment(segmentsContainer, segment, type) {
@@ -112,7 +111,7 @@ async function getFlights() {
 
     console.log("Itinéraires trouvés :", itineraries);
 
-    itineraries.forEach(function (itinerary) {
+    itineraries.forEach((itinerary) =>{
       // Clone le modèle de la carte de vol
       const cardClone = flightCardTemplate.content.cloneNode(true);
       const flightCardDiv = cardClone.querySelector(".flight-card");
@@ -138,7 +137,7 @@ async function getFlights() {
       const bookingOptions = itinerary.bookingOptions;
       const edges = bookingOptions.edges;
 
-      edges.forEach(function (option) {
+      edges.forEach((option)=> {
         const node = option.node;
         const bookingUrl = node.bookingUrl;
         const providerName = node.itineraryProvider.name;

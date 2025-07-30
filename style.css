@@ -297,9 +297,6 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.flight-arrow .plane-icon { /* Cible l'icône SVG de l'avion */
   width: 24px;
   height: 24px;
   transition: transform 0.3s ease-in-out;
@@ -408,7 +405,6 @@ h2 {
   to { transform: translateX(150vw); }
 }
 
-/* --- Design Responsive --- */
 @media (max-width: 1150px) {
   .flight-controls {
     flex-direction: column;
@@ -428,9 +424,7 @@ h2 {
     width: 80%;
     max-width: 300px;
   }
-  .flight-card {
-    width: calc(50% - 25px); /* Deux cartes par ligne sur les écrans moyens */
-  }
+ 
 }
 
 @media (max-width: 768px) {
@@ -446,10 +440,7 @@ h2 {
   #btnSearchFlights {
     width: 95%;
   }
-  .flight-card {
-    width: 95%; /* Une seule carte par ligne sur les petits écrans */
-    margin: 0 auto;
-  }
+  
   .flight-route {
     flex-direction: column;
     gap: 15px;
@@ -458,9 +449,7 @@ h2 {
     transform: rotate(90deg); /* Rotation de la flèche pour le mode vertical */
     margin: 10px 0;
   }
-  .plane-icon {
-    transform: rotate(-90deg); /* Ajuste la rotation de l'icône de l'avion */
-  }
+  
   .flight-times {
     flex-direction: column;
     gap: 10px;
