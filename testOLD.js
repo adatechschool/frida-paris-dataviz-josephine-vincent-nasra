@@ -74,7 +74,7 @@ async function getFlights() {
     outboundValue +
     "&destination=City%3A" +
     inboundValue +
-    "&currency=eur&locale=en&adults=1&children=0&infants=0&handbags=1&holdbags=0&cabinClass=ECONOMY&sortBy=QUALITY&sortOrder=ASCENDING&applyMixedClasses=true&allowReturnFromDifferentCity=true&allowChangeInboundDestination=true&allowChangeInboundSource=true&allowDifferentStationConnection=true&enableSelfTransfer=true&allowOvernightStopover=true&enableTrueHiddenCity=true&enableThrowAwayTicketing=true&outbound=SUNDAY%2CWEDNESDAY%2CTHURSDAY%2CFRIDAY%2CSATURDAY%2CMONDAY%2CTUESDAY&transportTypes=FLIGHT&contentProviders=FLIXBUS_DIRECTS%2CFRESH%2CKAYAK%2CKIWI&limit=20&inboundDepartureDateStart=" +
+    "&currency=eur&locale=en&adults=1&children=0&infants=0&handbags=1&holdbags=0&cabinClass=ECONOMY&sortBy=QUALITY&sortOrder=ASCENDING&applyMixedClasses=false&allowReturnFromDifferentCity=false&allowChangeInboundDestination=false&allowChangeInboundSource=false&allowDifferentStationConnection=false&enableSelfTransfer=false&allowOvernightStopover=false&enableTrueHiddenCity=false&enableThrowAwayTicketing=false&outbound=SUNDAY%2CWEDNESDAY%2CTHURSDAY%2CFRIDAY%2CSATURDAY%2CMONDAY%2CTUESDAY&transportTypes=FLIGHT&contentProviders=FLIXBUS_DIRECTS%2CFRESH%2CKAYAK%2CKIWI&limit=20&inboundDepartureDateStart=" +
     firstFlightTakeOff +
     "T00%3A00%3A00&inboundDepartureDateEnd=" +
     firstFlightLanding +
@@ -89,7 +89,7 @@ async function getFlights() {
   const options = {
     method: "GET",
     headers: {
-      "x-rapidapi-key": "a9f33f4830msh17854c7e78b4bedp1fa568jsnbd2ca1166df",
+      "x-rapidapi-key": "a9f33f4830msh17854c7e78b4bedp1fa568jsnbd2ca1166df0",
       "x-rapidapi-host": "kiwi-com-cheap-flights.p.rapidapi.com"
     }
   };
@@ -109,7 +109,7 @@ async function getFlights() {
       const price = itinerary.price.amount;
 
       container.appendChild(createTextLine("Durée de vol aller : " + duration + " minutes"));
-      container.appendChild(createTextLine("Prix " + price + " €"));
+      container.appendChild(createTextLine("Prix : " + price + " €"));
 
       // Segments aller
       itinerary.outbound.sectorSegments.forEach(function (segmentWrapper, index) {
@@ -122,12 +122,34 @@ async function getFlights() {
       itinerary.inbound.sectorSegments.forEach(function (segmentWrapper, index) {
         const segment = segmentWrapper.segment;
         displaySegment(container, segment, index, "inbound");
-
-        const hr = document.createElement("hr");
-        container.appendChild(hr);
-
         console.log("VALEUR", inboundValue);
       });
+
+      // Booking options (avec lien cliquable)
+      const bookingOptions = itinerary.bookingOptions;
+      const edges = bookingOptions.edges;
+
+      edges.forEach(function (option) {
+        const node = option.node;
+        const bookingUrl = node.bookingUrl; // URL relative
+        const providerName = node.itineraryProvider.name; // Exemple : "Kiwi.com"
+
+        // Construction de l’URL complète
+        const fullUrl = `https://www.${providerName}${bookingUrl}`;
+
+        const linkButton = document.createElement("a");
+        linkButton.href = fullUrl;
+        linkButton.innerHTML = `<button>🔗 Réserver</button>`;
+        linkButton.style.textDecoration = "none"; // facultatif pour retirer soulignement
+
+        container.appendChild(linkButton);
+
+      });
+
+
+
+      const hr = document.createElement("hr");
+      container.appendChild(hr);
 
       cout.appendChild(container);
     });
@@ -138,4 +160,5 @@ async function getFlights() {
 }
 
 // Démarrage : on met les écouteurs
-setupDateInputs() ;
+setupDateInputs();
+btnSearch.addEventListener("click", getFlights);
