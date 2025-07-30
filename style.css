@@ -51,12 +51,17 @@ h2 {
 }
 
 /* Styles pour les groupes d'entrées (dates, sélecteurs) */
-.date-inputs-group,
-.select-inputs-group {
+.date-inputs-group {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
+
+.select-inputs-group {
+  display: flex;
+  gap: 8px;
+}
+
 
 .flight-controls label {
   display: block;
