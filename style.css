@@ -3,7 +3,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%; /* S'assure que le corps prend toute la hauteur de la fenêtre */
-  font-family: Arial, sans-serif; /* Définit la police de base pour tout le document */
+  font-family: "Outfit", sans-serif; /* Définit la police de base pour tout le document */
   color: #333; /* Couleur de texte par défaut */
   background: linear-gradient(to bottom, #87ceeb, #f4f4f4); /* Dégradé de fond ciel */
   display: flex; /* Utilise Flexbox pour organiser les éléments */
