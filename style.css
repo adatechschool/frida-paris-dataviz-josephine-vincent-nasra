@@ -5,13 +5,9 @@ html, body {
   height: 100%; /* S'assure que le corps prend toute la hauteur de la fenêtre */
   font-family: Arial, sans-serif; /* Définit la police de base pour tout le document */
   color: #333; /* Couleur de texte par défaut */
-}
-
-body {
   background: linear-gradient(to bottom, #87ceeb, #f4f4f4); /* Dégradé de fond ciel */
   display: flex; /* Utilise Flexbox pour organiser les éléments */
   flex-direction: column; /* Empile les éléments verticalement */
-  align-items: center; /* Centre les éléments horizontalement */
   min-height: 100vh; /* S'assure que le corps prend au moins toute la hauteur de la vue */
   position: relative; /* Pour positionner les nuages par rapport au corps */
   overflow-x: hidden; /* Empêche le défilement horizontal */
@@ -19,10 +15,10 @@ body {
 
 /* --- Section En-tête --- */
 #logo {
-  width: 100px;
+  width: 150px;
   height: auto;
   mix-blend-mode: multiply; /* Mode de fusion pour un effet sur le fond */
-  margin-top: 20px;
+  margin-top: 0px;
   margin-bottom: 10px;
 }
 
@@ -36,18 +32,21 @@ h2 {
 
 /* --- Section des contrôles de vol (Barre de recherche) --- */
 .flight-controls {
-  background-color: #ffffff;
+  background-color: transparent;
   padding: 20px 30px;
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-wrap: wrap; /* Permet le passage à la ligne des éléments */
   gap: 25px; /* Espace entre les groupes de contrôles */
   justify-content: center;
   align-items: flex-end; /* Aligne les éléments en bas (labels vs inputs) */
-  margin-bottom: 40px;
-  width: 90%;
-  max-width: 1100px;
+  margin:0px auto 40px auto;
+  /* width: 90%;
+  max-width: 1100px; */
+  flex-direction: column;
+}
+#selection {
+  display: flex;
 }
 
 /* Styles pour les groupes d'entrées (dates, sélecteurs) */
@@ -78,41 +77,32 @@ h2 {
 
 /* --- Style du bouton de recherche --- */
 #btnSearchFlights {
-  position: relative;
+  position: flex;
+  /* top: 400px;
+  left: 600px; */
+  top: 83%;
+  left: 47%;
+  background-color: transparent;
   border: none;
-  background-color: white;
-  color: #212121;
-  padding: 15px 25px;
+  padding: 6px;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  font-weight: 600;
-  gap: 10px;
-  border-radius: 10px;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
+  gap: 8px;
   overflow: hidden;
-  margin-top: 25px;
-}
-
-#btnSearchFlights img {
-  width: 18px;
-  height: 18px;
-  vertical-align: middle;
-  transition: filter 0.6s cubic-bezier(0.23, 1, 0.320, 1), transform 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-}
-
-#btnSearchFlights span { /* Assure que le texte est au-dessus de l'animation */
-  position: relative;
-  z-index: 1;
+  z-index: 10;
+  /* Propriétés ajoutées pour éviter les styles par défaut du navigateur */
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 #btnSearchFlights::before {
   content: "";
   position: absolute;
-  background-color: #6366f1;
+  background-color: transparent; 
   width: 100%;
   height: 100%;
   left: 0;
@@ -122,30 +112,51 @@ h2 {
   z-index: -1;
 }
 
-#btnSearchFlights:hover::before {
-  animation: shakeBack 0.6s forwards;
+#btnSearchFlights img {
+  width: 50px !important;
+  height: 50px !important;
+  object-fit: contain;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+
 }
 
 #btnSearchFlights:hover {
-  color: white; /* Texte blanc au survol */
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 #btnSearchFlights:hover img {
-    filter: brightness(0) invert(1); /* Loupe blanche au survol */
-    transform: scale(1.1); /* Légère mise à l'échelle de l'icône */
+  filter: brightness(0.7); /* un effet plus sombre*/
+  transform: scale(1.1);
 }
 
-#btnSearchFlights:active {
-  box-shadow: none;
-  transform: translateY(2px); /* Effet de clic */
+#btnSearchFlights:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
 }
 
 
 @keyframes shakeBack {
-  0% { transform: translate(-100%, 100%); }
-  50% { transform: translate(20%, -20%); }
-  100% { transform: translate(0%, 0%); }
+  0% {
+    transform: translate(-100%, 100%);
+  }
+
+  50% {
+    transform: translate(20%, -20%);
+  }
+
+  100% {
+    transform: translate(0%, 0%);
+  }
 }
+
+
+#btnSearchFlights:hover {
+  background-color: #0056b3;
+} 
 
 /* --- Conteneur des cartes de vol --- */
 #cout {
