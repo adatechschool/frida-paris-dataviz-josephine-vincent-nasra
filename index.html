@@ -11,56 +11,103 @@
 
 <body>
 
-  <!-- Logo -->
   <img id="logo" src="image/logo.png" alt="logo" />
 
-  <!-- Titre principal -->
   <h2>Réservez votre vol !</h2>
 
-  <!-- Formulaire de recherche -->
-  <div class="centered">
+  <div class="flight-controls">
+    <div class="date-inputs-group">
+      <label for="outboundDeparture">Billet aller : </label>
+      <input type="date" id="outboundDeparture" />
+      <input type="date" id="outboundArrival" />
+    </div>
 
-    <!-- Section billets aller -->
-    <label for="outbound">Billet aller :</label>
-    <input type="date" id="outboundDeparture" />
-    <input type="date" id="outboundArrival" />
+    <div class="date-inputs-group">
+      <label for="inboundDeparture">Billet retour :</label>
+      <input type="date" id="inboundDeparture" />
+      <input type="date" id="inboundArrival" />
+    </div>
 
-    <!-- Section billets retour -->
-    <label for="inbound">Billet retour :</label>
-    <input type="date" id="inboundDeparture" />
-    <input type="date" id="inboundArrival" />
+    <div class="select-inputs-group">
+      <label for="outbound">Départ :</label>
+      <select id="outbound">
+        <option value="warsaw_pl">Pologne</option>
+        <option value="paris_fr">France</option>
+        <option value="milan_it">Italie</option>
+        <option value="moroni_km">Comores</option>
+        <option value="jakarta_id">Indonésie</option>
+        <option value="nassau_bs">Bahamas</option>
+      </select>
 
-    <!-- Sélection des destinations -->
-    <label for="outbound">Départ :</label>
-    <select id="outbound">
-      <option value="warsaw_pl">Pologne</option>
-      <option value="paris_fr">France</option>
-      <option value="milan_it">Italie</option>
-      <option value="moroni_km">Comores</option>
-      <option value="jakarta_id">Indonésie</option>
-      <option value="nassau_bs">Bahamas</option>
-    </select>
+      <label for="inbound">Arrivée :</label>
+      <select id="inbound">
+        <option value="dubrovnik_hr">Croatie</option>
+        <option value="paris_fr">France</option>
+        <option value="milan_it">Italie</option>
+        <option value="moroni_km">Comores</option>
+        <option value="jakarta_id">Indonésie</option>
+        <option value="nassau_bs">Bahamas</option>
+      </select>
+    </div>
 
-    <label for="inbound">Arrivée :</label>
-    <select id="inbound">
-      <option value="dubrovnik_hr">Croatie</option>
-      <option value="paris_fr">France</option>
-      <option value="milan_it">Italie</option>
-      <option value="moroni_km">Comores</option>
-      <option value="jakarta_id">Indonésie</option>
-      <option value="nassau_bs">Bahamas</option>
-    </select>
-
-    <!-- Bouton de recherche -->
     <button id="btnSearchFlights">
-      <img src="image/loupe.png" alt="rechercher" style="width:16px; vertical-align:middle;" />
+      <img src="image/loupe.png" alt="rechercher"
     </button>
-
-    <!-- Résultat des vols -->
-    <div id="cout"></div>
   </div>
 
-  <!-- Nuages décoratifs -->
+  <div id="cout"></div>
+
+  <template id="flightCardTemplate">
+    <div class="flight-card">
+      <div class="flight-header">
+        <div class="flight-duration"></div>
+        <div class="flight-price"></div>
+      </div>
+      <div class="flight-segments-container">
+        </div>
+      <div class="booking-section">
+        </div>
+    </div>
+  </template>
+
+  <template id="flightSegmentTemplate">
+    <div class="flight-segment">
+      <div class="segment-header">
+        <span class="segment-badge"></span>
+      </div>
+      <div class="flight-route">
+        <div class="airport-info">
+          <div class="airport-code"></div>
+          <div class="airport-date"></div>
+        </div>
+        <div class="flight-arrow">
+          <span>→</span>
+        </div>
+        <div class="airport-info">
+          <div class="airport-code"></div>
+          <div class="airport-date"></div>
+        </div>
+      </div>
+      <div class="flight-times">
+        <div class="time-info">
+          <div class="time-label">Départ</div>
+          <div class="time-value"></div>
+        </div>
+        <div class="time-info">
+          <div class="time-label">Arrivée</div>
+          <div class="time-value"></div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="bookingButtonTemplate">
+      <a href="#" class="booking-button" target="_blank">
+          <span class="booking-icon">🔗</span>
+          <span class="booking-provider-name"></span>
+      </a>
+  </template>
+
   <div class="cloud cloud1"></div>
   <div class="cloud cloud2"></div>
   <div class="cloud cloud3"></div>
