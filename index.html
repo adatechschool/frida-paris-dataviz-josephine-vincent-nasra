@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script defer src="testOLD.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>Réservation de vol</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <img id="logo" src="image/logo.png" alt="logo" />
+
+  <h2>Réservez votre vol !</h2>
+
+  <div class="flight-controls">
+    <div id="selection">
+      <div class="date-inputs-group">
+        <label for="outboundDeparture">Billet aller : </label>
+        <input type="date" id="outboundDeparture" />
+        <input type="date" id="outboundArrival" />
+      </div>
+
+      <div class="date-inputs-group">
+        <label for="inboundDeparture">Billet retour :</label>
+        <input type="date" id="inboundDeparture" />
+        <input type="date" id="inboundArrival" />
+      </div>
+
+      <div class="select-inputs-group">
+        <label for="outbound">Départ :</label>
+        <select id="outbound">
+          <option value="paris_fr">Paris</option>
+          <option value="warsaw_pl">Warsaw</option>
+          <option value="dubrovnik_hr">Dubrovnik</option>
+          <option value="milan_it">Milan</option>
+          <option value="moroni_km">Moroni</option>
+          <option value="jakarta_id">Jakarta</option>
+          <option value="nassau_bs">Nassau</option>
+        </select>
+
+        <label for="inbound">Arrivée :</label>
+        <select id="inbound">
+          <option value="warsaw_pl">Warsaw</option>
+          <option value="dubrovnik_hr">Dubrovnik</option>
+          <option value="paris_fr">Paris</option>
+          <option value="milan_it">Milan</option>
+          <option value="moroni_km">Moroni</option>
+          <option value="jakarta_id">Jakarta</option>
+          <option value="nassau_bs">Nassau</option>
+        </select>
+      </div>
+    </div>
+    <div id = "buttonSearch" >
+    <button id="btnSearchFlights">
+      <img src="image/loupe.png" alt="rechercher"></button>
+      </div>
+  </div>
+</div>
+  <div id="cout"></div>
+
+  <template id="flightCardTemplate">
+    <div class="flight-card">
+      <div class="flight-header">
+        <div class="flight-duration"></div>
+        <div class="flight-price"></div>
+      </div>
+      <div class="flight-segments-container">
+      </div>
+      <div class="booking-section">
+      </div>
+    </div>
+  </template>
+
+  <template id="flightSegmentTemplate">
+    <div class="flight-segment">
+      <div class="segment-header">
+        <span class="segment-badge"></span>
+      </div>
+      <div class="flight-route">
+        <div class="airport-info">
+          <div class="airport-code"></div>
+          <div class="airport-date"></div>
+        </div>
+        <div class="flight-arrow">
+          <span>→</span>
+        </div>
+        <div class="airport-info">
+          <div class="airport-code"></div>
+          <div class="airport-date"></div>
+        </div>
+      </div>
+      <div class="flight-times">
+        <div class="time-info">
+          <div class="time-label">Départ</div>
+          <div class="time-value"></div>
+        </div>
+        <div class="time-info">
+          <div class="time-label">Arrivée</div>
+          <div class="time-value"></div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="bookingButtonTemplate">
+    <a href="#" class="booking-button" target="_blank">
+      <span class="booking-icon">🔗</span>
+      <span class="booking-provider-name"></span>
+    </a>
+  </template>
+
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+  <div class="cloud cloud3"></div>
+
+</body>
+
+</html>
